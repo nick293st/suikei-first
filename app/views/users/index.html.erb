@@ -1,0 +1,6 @@
+<h1>ユーザ一覧</h1>
+<ul>
+    <% @users.each do |user| %>
+        <li><%=link_to user.id, user %> : <%= user.name %></li>
+    <% end %>
+</ul>
