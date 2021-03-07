@@ -1,0 +1,11 @@
+<h1>水景詳細</h1>
+<div>投稿者 : <%= @waterscape.user.name %></div>
+<div>投稿日時 : <%= @waterscape.created_at %></div>
+<div><%= image_tag @waterscape.image.url, size: '280x280',alt:'水景画像' %></div>
+<div>
+    <% if current_user == @waterscape.user %>
+        <%= link_to '水景を編集する' , edit_waterscape_path(@waterscape), class: 'btn btn-secondary' %>
+        <%= link_to '削除', @waterscape, method: :delete, data: { confirm: '削除しますがよろしいですか' }, class: 'btn btn-danger' %>
+    <% end %>
+</div>
+<div><%= link_to 'トップへ' , waterscapes_path, class: "btn btn-primary" %></div>

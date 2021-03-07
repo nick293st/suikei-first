@@ -1,9 +1,15 @@
 <h1>ユーザ詳細</h1>
 <div>
+    <div>name : <%= @user.name %></div>
+    <div>email : <%= @user.email %></div>
     <div>
-        name : <%= @user.name %>
+        <ul>
+            <% @user.waterscapes.each do |waterscape| %>
+                <li>
+                    <div><%= link_to image_tag(waterscape.image.url, size: '140x140',alt:'水景画像'), waterscape %></div>
+                </li>
+            <% end %>
+        </ul>
     </div>
-    <div>
-        email : <%= @user.email %>
-    </div>
+    <%= link_to '新規投稿' , new_waterscape_path, class: "btn btn-primary" %>
 </div>
