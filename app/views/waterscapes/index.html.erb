@@ -5,6 +5,8 @@
             <li>
                 <div><%= waterscape.id%></div>
                 <div><%= link_to image_tag(waterscape.image.url, size: '70x70',alt:'水景画像'), waterscape %></div>
+                <!--like button-->
+                <div><%= render 'likes/like_button', waterscape: waterscape %></div>
             </li>
         <% end %>
     </ul>

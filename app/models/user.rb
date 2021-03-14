@@ -6,4 +6,21 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
     has_secure_password
     has_many :waterscapes
+    has_many :likes
+    has_many :liked, through: :likes, source: :user
+    has_many :liker, through: :likes, source: :waterscape
+    
+    # ---like unlike---
+    def like(waterscape)
+      self.likes.find_or_create_by(waterscape_id: waterscape.id)
+    end
+    
+    def unlike(waterscape)
+    like = self.likes.find_by(waterscape_id: waterscape.id)
+    like.destroy if like
+    end
+    
+    def liking?(waterscape)
+    self.liker.include?(waterscape)
+    end
 end

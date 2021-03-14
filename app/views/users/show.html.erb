@@ -7,8 +7,21 @@
             <% @user.waterscapes.each do |waterscape| %>
                 <li>
                     <div><%= link_to image_tag(waterscape.image.url, size: '140x140',alt:'水景画像'), waterscape %></div>
+                    <div><%= render 'likes/like_button', waterscape: waterscape %></div>
                 </li>
             <% end %>
+        </ul>
+    </div>
+    <div>
+        <h4>お気に入り水景</h4>
+        お気に入り数 : <%= @count_liker %>
+        <ul>
+            <% @likers.each do |waterscape| %>
+            <li>
+                <div><%= link_to image_tag(waterscape.image.url, size: '140x140',alt:'水景画像'), waterscape %></div>
+                <div><%= render 'likes/like_button', waterscape: waterscape %></div>
+            </li>
+        <% end %>
         </ul>
     </div>
     <%= link_to '新規投稿' , new_waterscape_path, class: "btn btn-primary" %>

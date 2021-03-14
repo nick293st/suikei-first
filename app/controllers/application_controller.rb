@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
         end
     end
     
+    def counts(user)
+        @count_waterscapes = user.waterscapes.count
+        @count_liker = user.liker.count
+        @count_liked = user.liked.count
+    end
+    
 end

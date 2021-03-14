@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_023729) do
+ActiveRecord::Schema.define(version: 2021_03_14_065529) do
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "waterscape_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "waterscape_id"], name: "index_likes_on_user_id_and_waterscape_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+    t.index ["waterscape_id"], name: "index_likes_on_waterscape_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -28,5 +38,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_023729) do
     t.index ["user_id"], name: "index_waterscapes_on_user_id"
   end
 
+  add_foreign_key "likes", "users"
+  add_foreign_key "likes", "waterscapes"
   add_foreign_key "waterscapes", "users"
 end

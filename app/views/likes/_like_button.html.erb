@@ -1,0 +1,11 @@
+<% if current_user.liking?(waterscape) %>
+    <%= form_with(model: current_user.likes.find_by(waterscape_id: waterscape.id), local: true, method: :delete) do |f| %>
+      <%= hidden_field_tag :waterscape_id, waterscape.id %>
+      <%= f.submit 'Like', class: 'btn btn-primary btn-sm' %>
+    <% end %>
+<% else %>
+    <%= form_with(model: current_user.likes.build, local: true) do |f| %>
+      <%= hidden_field_tag :waterscape_id, waterscape.id %>
+      <%= f.submit 'Like', class: 'btn btn-secondary btn-sm' %>
+    <% end %>
+<% end %>

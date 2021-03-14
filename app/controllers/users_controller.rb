@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @likers = @user.liker
+    counts(@user)
   end
 
   def new
@@ -23,6 +25,19 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def likers
+    @user = User.find(params[:id])
+    @likers = @user.liker
+    counts(@user)
+  end
+  
+  def likeds
+    @user = User.find(params[:id])
+    @liked = @user.liked
+    counts(@user)
+  end
+
   
   private
   
