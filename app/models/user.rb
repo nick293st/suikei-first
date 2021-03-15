@@ -16,11 +16,11 @@ class User < ApplicationRecord
     end
     
     def unlike(waterscape)
-    like = self.likes.find_by(waterscape_id: waterscape.id)
-    like.destroy if like
+      like = self.likes.find_by(waterscape_id: waterscape.id)
+      like.destroy if like
     end
     
     def liking?(waterscape)
-    self.liker.include?(waterscape)
+      self.liker.include?(waterscape)
     end
 end
