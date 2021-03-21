@@ -3,7 +3,7 @@ class WaterscapesController < ApplicationController
     before_action :correct_user, only: [:edit, :update, :destroy]
     
     def index
-        @waterscapes = Waterscape.all
+        @waterscapes = Waterscape.all.page(params[:page]).per(24)
     end
     
     def show

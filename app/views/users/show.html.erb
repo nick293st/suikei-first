@@ -1,28 +1,21 @@
 <h1>ユーザ詳細</h1>
 <div>
-    <div>name : <%= @user.name %></div>
-    <div>email : <%= @user.email %></div>
-    <div>
-        <ul>
-            <% @user.waterscapes.each do |waterscape| %>
-                <li>
-                    <div><%= link_to image_tag(waterscape.image.url, size: '140x140',alt:'水景画像'), waterscape %></div>
-                    <div><%= render 'likes/like_button', waterscape: waterscape %></div>
-                </li>
-            <% end %>
-        </ul>
+    <div class="pb-3 border-bottom">
+        <h4>Name : <%= @user.name %></h4>
+        <h4>Email : <%= @user.email %></h4>
     </div>
-    <div>
-        <h4>お気に入り水景</h4>
-        お気に入り数 : <%= @count_liker %>
-        <ul>
-            <% @likers.each do |waterscape| %>
-            <li>
-                <div><%= link_to image_tag(waterscape.image.url, size: '140x140',alt:'水景画像'), waterscape %></div>
-                <div><%= render 'likes/like_button', waterscape: waterscape %></div>
-            </li>
-        <% end %>
-        </ul>
+    <div class="pb-3">
+        <div class="pt-3">
+            <h4>投稿画像<span class="badge badge-pill badge-secondary"><%= @count_waterscapes %></span></h4>
+            <%= render 'waterscapes/waterscapes', waterscapes: @user_waterscapes %>
+        </div>
+        <div class="pt-3">
+            <h4>お気に入り水景<span class="badge badge-pill badge-secondary"><%= @count_liker %></span></h4>
+            <%= render 'waterscapes/waterscapes', waterscapes: @likers %>
+        </div>
     </div>
-    <%= link_to '新規投稿' , new_waterscape_path, class: "btn btn-primary" %>
+    <div class="p-1 pt-3">
+        <%= link_to '新規投稿' , new_waterscape_path, class: "btn btn-primary" %>
+        <%= link_to 'トップへ' , waterscapes_path, class: "btn btn-primary" %>
+    </div>
 </div>

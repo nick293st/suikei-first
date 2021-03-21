@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @likers = @user.liker
+    @user_waterscapes = @user.waterscapes.page(params[:page]).per(12)
+    @likers = @user.liker.page(params[:page]).per(12)
     counts(@user)
   end
 

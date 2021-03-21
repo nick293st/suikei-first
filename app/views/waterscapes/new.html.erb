@@ -1,11 +1,14 @@
-<h1>新規作成</h1>
-
-<%= form_with(model: @waterscape, local:true) do |f| %>
-    <%= f.label :image,'画像' %>
-    <%= f.file_field :image %>
-    
-    <%= f.submit '投稿' %>
-
-<% end %>
-
-<div><%= link_to 'トップへ' , waterscapes_path, class: "btn btn-primary" %></div>
+<div class="text-center">
+    <h1>新規投稿</h1>
+</div>
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        <%= form_with(model: @waterscape, local:true) do |f| %>
+            <div class="form-group">
+                <%= f.label :image,'Image' %>
+                <%= f.file_field :image, class: 'form-control' %>
+            </div>
+            <%= f.submit '投稿',class: 'btn btn-block btn-primary' %>
+        <% end %>
+    </div>
+</div>

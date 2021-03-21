@@ -1,0 +1,11 @@
+<div class="row p-1 pb-3">
+    <% waterscapes.each do |waterscape| %>
+        <div class="p-1 col-sm-2">
+            <p><%= waterscape.id%></p>
+            <div><%= link_to image_tag(waterscape.image.url, width: '100%',alt:'水景画像'), waterscape %></div>
+            <!--like button-->
+            <div class="mt-1"><%= render 'likes/like_button', waterscape: waterscape %></div>
+        </div>
+    <% end %>
+</div>
+<div class="pt-3 pb-3 border-bottom border-secondary border-5"><%= paginate waterscapes %></div>
