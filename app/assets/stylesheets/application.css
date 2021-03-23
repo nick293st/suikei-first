@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+#main-contents{
+    margin-bottom: -80px;
+}
+.footer, .push{
+    height: 80px;
+}
