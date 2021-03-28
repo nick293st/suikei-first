@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_logged_in, only: [:index, :show]
+  before_action :correct_user_changes_user, only: [:edit, :update, :destroy]
   
   def index
     @users = User.all
@@ -27,6 +28,28 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] ='ユーザ情報を編集しました'
+      redirect_to @user
+    else
+      flash.now[:danger] = 'ユーザ情報の編集に失敗しました'
+      render :edit
+    end
+  end
+  
+  def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      flash[:success] = "ユーザアカウントを削除しました"
+      redirect_to root_url
+  end
+  
   def likers
     @user = User.find(params[:id])
     @likers = @user.liker
@@ -45,4 +68,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def correct_user_changes_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+        redirect_to root_url
+    end
+  end
+  
 end

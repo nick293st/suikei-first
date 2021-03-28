@@ -15,12 +15,16 @@ class WaterscapesController < ApplicationController
     end
     
     def create
-        @waterscape = current_user.waterscapes.new(waterscape_params)
-        if @waterscape.save
-            flash[:success] = "投稿に成功しました"
-            redirect_to root_url
+        if params[:waterscape].present?
+            @waterscape = current_user.waterscapes.new(waterscape_params)
+            if @waterscape.save
+                flash[:success] = "投稿に成功しました"
+                redirect_to root_url
+            else
+                flash.now[:danger] = "投稿に失敗しました"
+                render :new
+            end
         else
-            flash.now[:danger] = "投稿に失敗しました"
             render :new
         end
     end
@@ -42,9 +46,8 @@ class WaterscapesController < ApplicationController
     
     def destroy
         @waterscape = Waterscape.find(params[:id])
-        @waterscape.destroy#undefined method `destroy' for nil:NilClass
+        @waterscape.destroy
         flash[:success] = "画像を削除しました"
-        #redirect_back(fallback_location: root_path)
         redirect_to root_url
     end
     
